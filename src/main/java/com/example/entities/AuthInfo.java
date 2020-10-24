@@ -27,9 +27,11 @@ public class AuthInfo {
     private String password;
 
     @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
     @Column(name = "state")
+    @Enumerated(EnumType.STRING)
     private StateEnum state;
 
 

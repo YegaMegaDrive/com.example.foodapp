@@ -22,6 +22,7 @@ public class User {
     private Integer age;
 
     @Column(name = "sex")
+    @Enumerated(EnumType.STRING)
     private SexEnum sex;
 
     @Column(name = "weight")

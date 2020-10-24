@@ -23,6 +23,7 @@ public class Meal {
     private ProductList product;
 
     @Column(name = "meal")
+    @Enumerated(EnumType.STRING)
     private MealEnum meal;
 
 }
