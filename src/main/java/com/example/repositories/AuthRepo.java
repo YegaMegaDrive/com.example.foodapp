@@ -11,8 +11,6 @@ import java.util.Optional;
 @Repository
 public interface AuthRepo extends JpaRepository<UserAuth,Integer> {
 
-   // @Query("select i from UserAuth i where i.login =: login")
-    //UserAuth findUserLoginByLogin(/*@Param("login") */ String login);
     Optional<UserAuth> findUserLoginByLogin(String login);
 
     UserAuth getUserAuthByLogin(String login);

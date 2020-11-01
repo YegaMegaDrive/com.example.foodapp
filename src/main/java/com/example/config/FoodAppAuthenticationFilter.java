@@ -1,6 +1,7 @@
 package com.example.config;
 
 import com.example.to.controller.LoginRequest;
+import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -55,6 +57,23 @@ public class FoodAppAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
 
+        String urlRequest = httpServletRequest.getRequestURI();
+
+       // String sessionId = httpServletRequest.getHeader(SecurityConstants.SESSION_HEADER);
+
+        /*if(sessionId==null){
+
+        }*/
+
+        for (String urlPermitAll: SecurityConfig.PERMIT_ALL_URLS){
+            if(urlPermitAll.equals(urlRequest)){
+                filterChain.doFilter(httpServletRequest,httpServletResponse);
+                return;
+            }
+        }
+
+
+
         String header = httpServletRequest.getHeader(SecurityConstants.TOKEN_HEADER);
         String userName = null;
         String authToken = null;
@@ -72,6 +91,7 @@ public class FoodAppAuthenticationFilter extends OncePerRequestFilter {
             }
         } else {
             log.error("header = null");
+            throw new ServletException("header with token not found");
         }
 
         if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {

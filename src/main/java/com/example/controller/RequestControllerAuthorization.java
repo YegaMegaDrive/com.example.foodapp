@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Set;
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -63,6 +64,7 @@ public class RequestControllerAuthorization  {
         HttpHeaders httpHeaders = new HttpHeaders();
         String body = new String( Base64.getEncoder().encode((loginInfo.getLogin() + ":" + loginInfo.getPassword()).getBytes()), StandardCharsets.UTF_8);
         httpHeaders.set(SecurityConstants.TOKEN_HEADER, body);
+        httpHeaders.set(SecurityConstants.SESSION_HEADER, UUID.randomUUID().toString());
         return ResponseEntity.ok().headers(httpHeaders).body(new SimpleResp());
     }
     @PostMapping("/Register")
@@ -89,6 +91,10 @@ public class RequestControllerAuthorization  {
         user.setName(rq.getName());
         user.setWeight(rq.getWeight());
         userRepo.save(user);
+        return ResponseEntity.ok(new SimpleResp());
+    }
+    @GetMapping("/Logout")
+    public ResponseEntity logout(){
         return ResponseEntity.ok(new SimpleResp());
     }
 }

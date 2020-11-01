@@ -4,9 +4,9 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "product_list")
 @Data
-public class ProductList {
+@Table(name = "product_list")
+public class Product {
 
     @Id
     @Column(name = "id")
@@ -14,9 +14,6 @@ public class ProductList {
 
     @Column(name = "name")
     private String name;
-
-    @Column(name = "picture")
-    private String picture;
 
     @Column(name = "kal_consumption")
     private Double kal;

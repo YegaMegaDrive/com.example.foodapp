@@ -20,7 +20,7 @@ public class Meal {
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private ProductList product;
+    private Product product;
 
     @Column(name = "meal")
     @Enumerated(EnumType.STRING)
