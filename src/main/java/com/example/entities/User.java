@@ -1,6 +1,6 @@
 package com.example.entities;
 
-import com.example.to.SexEnum;
+import com.example.to.enums.SexEnum;
 import lombok.Data;
 
 import javax.persistence.*;

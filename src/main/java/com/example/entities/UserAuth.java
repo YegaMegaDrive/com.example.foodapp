@@ -1,7 +1,7 @@
 package com.example.entities;
 
-import com.example.to.RoleEnum;
-import com.example.to.StateEnum;
+import com.example.to.enums.RoleEnum;
+import com.example.to.enums.StatusEnum;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "authorization")
-public class AuthInfo {
+public class UserAuth {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class AuthInfo {
 
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
-    private StateEnum state;
+    private StatusEnum status;
 
 
 

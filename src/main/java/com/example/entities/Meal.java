@@ -1,6 +1,6 @@
 package com.example.entities;
 
-import com.example.to.MealEnum;
+import com.example.to.enums.MealEnum;
 import lombok.Data;
 
 import javax.persistence.*;

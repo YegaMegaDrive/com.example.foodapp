@@ -22,10 +22,7 @@ public class FoodAppApplication {
     }
 
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+
 
 
 }

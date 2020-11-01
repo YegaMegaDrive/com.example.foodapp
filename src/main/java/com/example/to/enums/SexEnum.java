@@ -1,4 +1,4 @@
-package com.example.to;
+package com.example.to.enums;
 
 public enum SexEnum {
     M,F
