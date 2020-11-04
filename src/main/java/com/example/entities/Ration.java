@@ -9,6 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "ration")
 @Data
+
 public class Ration {
 
     @Id
@@ -36,4 +37,21 @@ public class Ration {
     @Column(name = "protein")
     private Double protein;
 
+    public Ration() {
+    }
+
+    public Ration(Ration ration){
+        this.user = ration.getUser();
+        this.date = ration.getDate();
+        this.calories = ration.getCalories();
+        this.carbs = ration.getCarbs();
+        this.fat = ration.getFat();
+        this.protein = ration.getProtein();
+    }
+    public void cleanStats(){
+        this.calories = 0.0;
+        this.carbs = 0.0;
+        this.fat = 0.0;
+        this.protein = 0.0;
+    }
 }

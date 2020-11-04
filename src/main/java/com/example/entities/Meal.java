@@ -4,6 +4,7 @@ import com.example.to.enums.MealEnum;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -11,6 +12,7 @@ import javax.persistence.*;
 public class Meal {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -25,5 +27,9 @@ public class Meal {
     @Column(name = "meal")
     @Enumerated(EnumType.STRING)
     private MealEnum meal;
+
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
 }

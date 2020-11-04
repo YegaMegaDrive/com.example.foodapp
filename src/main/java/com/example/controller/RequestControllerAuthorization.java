@@ -83,14 +83,19 @@ public class RequestControllerAuthorization  {
     }
 
     @PostMapping("/Data")
-    public ResponseEntity saveUserData(@RequestBody UserDataRq rq){
+    public ResponseEntity saveUserData(@RequestBody UserDataRq rq)throws IllegalArgumentException{
         com.example.entities.User user = authRepo.getUserAuthByLogin(rq.getLogin()).getUser();
-        user.setSex(rq.getSex());
-        user.setAge(rq.getAge());
-        user.setHeight(rq.getHeight());
-        user.setName(rq.getName());
-        user.setWeight(rq.getWeight());
-        userRepo.save(user);
+        com.example.entities.User user1 = userRepo.findByName(rq.getName());
+        if(user1==null) {
+            user.setSex(rq.getSex());
+            user.setAge(rq.getAge());
+            user.setHeight(rq.getHeight());
+            user.setName(rq.getName());
+            user.setWeight(rq.getWeight());
+            userRepo.save(user);
+        }else{
+            throw new IllegalArgumentException();
+        }
         return ResponseEntity.ok(new SimpleResp());
     }
     @GetMapping("/Logout")
