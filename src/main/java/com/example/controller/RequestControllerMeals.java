@@ -2,6 +2,8 @@ package com.example.controller;
 
 import com.example.services.MealService;
 import com.example.to.controller.AddOrDeleteProductRq;
+import com.example.to.controller.GetStatisticsRq;
+import com.example.to.controller.GetStatisticsRs;
 import com.example.to.controller.SimpleResp;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,11 @@ public class RequestControllerMeals {
     public ResponseEntity deleteProduct(@RequestBody AddOrDeleteProductRq rq)throws NotFoundException{
         service.deleteProductFromMeal(rq);
         return ResponseEntity.ok(new SimpleResp());
+    }
+
+    @PostMapping("/Get/Products")
+    public ResponseEntity getAllProductsByDateAndUserName(@RequestBody GetStatisticsRq rq)throws NotFoundException{
+        return ResponseEntity.ok(service.getAllProductsByDateAndUserName(rq));
     }
 
 }

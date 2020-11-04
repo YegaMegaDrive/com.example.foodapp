@@ -1,8 +1,10 @@
 package com.example.repositories;
 
 import com.example.entities.Meal;
+import com.example.entities.Product;
 import com.example.to.enums.MealEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 

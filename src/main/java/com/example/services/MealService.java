@@ -5,15 +5,17 @@ import com.example.entities.Product;
 import com.example.entities.User;
 import com.example.repositories.MealRepo;
 import com.example.repositories.ProductRepo;
-import com.example.repositories.RationRepo;
 import com.example.repositories.UserRepo;
 import com.example.to.controller.AddOrDeleteProductRq;
+import com.example.to.controller.GetStatisticsRq;
 import com.example.to.enums.MealEnum;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class MealService {
@@ -59,4 +61,20 @@ public class MealService {
         }
     }
 
+    public List<Product> getAllProductsByDateAndUserName(GetStatisticsRq rq){
+
+        List<Product> productList = new ArrayList<>();
+        List<Meal> mealList = null;
+        if(rq.getDate()!=null){
+            mealList = mealRepo.findAllByDateAndUser_Name(rq.getDate(),rq.getUserName());
+        }else{
+            mealList = mealRepo.findAllByDateAndUser_Name(new Date(),rq.getUserName());
+        }
+        if(mealList!= null){
+            for (Meal meal : mealList) {
+                productList.add(meal.getProduct());
+            }
+        }
+        return productList;
+    }
 }
