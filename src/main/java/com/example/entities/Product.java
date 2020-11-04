@@ -1,4 +1,5 @@
 package com.example.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 public class Product {
 
     @Id
+    @JsonIgnore
     @Column(name = "id")
     private Integer id;
 

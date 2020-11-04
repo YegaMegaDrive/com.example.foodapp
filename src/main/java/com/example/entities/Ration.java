@@ -21,7 +21,7 @@ public class Ration {
     private User user;
 
     @Column(name = "date")
-    @DateTimeFormat
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     @Column(name = "calories")
